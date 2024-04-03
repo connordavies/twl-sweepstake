@@ -8,7 +8,7 @@
         <div id="ratingsTable" class="container">
             <div class="row">
                 <div class="col">
-                    <h1 id="ratingsTitle">Street Fighter II League - Ratings (Loading...)</h1>
+                    <h1 id="ratingsTitle">TWL Sweepstake (Loading...)</h1>
                 </div>
             </div>
             <!-- <div class="row fs-1">
@@ -91,39 +91,18 @@
                         if(ratingsArray[i] == "") {
                             break;
                         }
-                        console.log("POSITION: " + ratingsArray[i]);
+                        console.log("NAME: " + ratingsArray[i]);
                         rowDiv = document.createElement("div");
-                        if(ratingsArray[i] == "1") {
-                            rowDiv.className = "row fs-1";
-                        }
-                        else if(ratingsArray[i] == "2") {
-                            rowDiv.className = "row fs-2";
-                        }
-                        else if(ratingsArray[i] == "3") {
-                            rowDiv.className = "row fs-3";
-                        }
-                        else {
-                            rowDiv.className = "row";
-                        }
                         let colDiv = document.createElement("div");
                         colDiv.className = "col";
-                        colDiv.innerHTML = ratingsArray[i] + ".";
+                        colDiv.innerHTML = ratingsArray[i];
                         rowDiv.appendChild(colDiv);
 
                         document.getElementById("ratingsTable").appendChild(rowDiv);
                     }
                     else if(col == 1) {
                         // name
-                        console.log("NAME: " + ratingsArray[i]);
-                        let colDiv = document.createElement("div");
-                        colDiv.className = "col";
-                        colDiv.innerHTML = ratingsArray[i];
-
-                        rowDiv.appendChild(colDiv);
-                    }
-                    else {
-                        // rating
-                        console.log("RATING: " + ratingsArray[i]);
+                        console.log("PREDICTIONS: " + ratingsArray[i]);
                         let colDiv = document.createElement("div");
                         colDiv.className = "col";
                         colDiv.innerHTML = ratingsArray[i];
@@ -133,9 +112,9 @@
 
                     i++;
                     col++;
-                    col = col % 3;
+                    col = col % 2;
                 };
-                document.getElementById("ratingsTitle").innerHTML = "Street Fighter II League - Ratings";
+                document.getElementById("ratingsTitle").innerHTML = "TWL Sweepstake";
                 console.log("I put the ratings on the page");
             };
             window.onload = (event) => {
