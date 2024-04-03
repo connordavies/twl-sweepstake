@@ -78,6 +78,7 @@
                 });
             };
             function putRatingsOnPage(ratings) {
+                let rowClass = "row fw-bold";
                 let ratingsArray = ratings.split(",");
                 let i = 0;
                 let col = 0;
@@ -87,13 +88,13 @@
                         break;
                     }
                     if(col == 0) {
-                        // position
+                        // name
                         if(ratingsArray[i] == "") {
                             break;
                         }
                         console.log("NAME: " + ratingsArray[i]);
                         rowDiv = document.createElement("div");
-                        rowDiv.className = "row";
+                        rowDiv.className = rowClass;
                         let colDiv = document.createElement("div");
                         colDiv.className = "col";
                         colDiv.innerHTML = ratingsArray[i];
@@ -102,7 +103,8 @@
                         document.getElementById("ratingsTable").appendChild(rowDiv);
                     }
                     else if(col == 1) {
-                        // name
+                        // predictions
+                        rowClass = "row";
                         console.log("PREDICTIONS: " + ratingsArray[i]);
                         let colDiv = document.createElement("div");
                         colDiv.className = "col";
