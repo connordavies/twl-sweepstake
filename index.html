@@ -5,16 +5,25 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div id="ratingsTable" class="container fs-2">
+        <!--<div id="ratingsTable" class="container fs-2">
             <div class="row">
                 <div class="col">
-                    <h1 id="ratingsTitle">TWL Sweepstake (Loading...)</h1>
+                    <h1 id="ratingsTitle">TWL Sweepstake</h1>
                 </div>
+            </div>
+        </div>-->
+        <div class="container fs-2">
+            <div class="row">
+                <div class="col">
+                    <h1 id="ratingsTitle">TWL Sweepstake</h1>
+                </div>
+            </div>
+            <div id="ratingsTable">
             </div>
         </div>
         <script type="text/javascript">
-            function getRatings() {
-                fetch('https://script.google.com/macros/s/AKfycbwzA17Ztn2DJLTRz3wEe5gZPq2nybLcrjjd98ELdcKgTvvZWTkv452lJVChOyBDuQkU-A/exec')
+            function getRatings(region) {
+                fetch('https://script.google.com/macros/s/AKfycbwzA17Ztn2DJLTRz3wEe5gZPq2nybLcrjjd98ELdcKgTvvZWTkv452lJVChOyBDuQkU-A/exec?region='+region)
                 .then(function(response) {
                     response.text().then(function(text) {
                         console.log(text);
@@ -23,13 +32,19 @@
                 });
             };
             function putRatingsOnPage(ratings) {
+                document.getElementById("ratingsTable").innerHTML = "";
                 let rowClass = "row fw-bold";
                 let ratingsArray = ratings.split(",");
-                let i = 0;
+                let i = -1;
                 let col = 0;
                 let rowDiv;
                 while(true) {
                     if(ratingsArray.length < i + 1) {
+                        break;
+                    }
+                    if(i == 0) {
+                        document.getElementById("ratingsTitle").innerHTML = "TWL Sweepstake - " + ratingsArray[0];
+                        i++;
                         break;
                     }
                     if(col == 0) {
@@ -62,12 +77,11 @@
                     col++;
                     col = col % 2;
                 };
-                document.getElementById("ratingsTitle").innerHTML = "TWL Sweepstake";
                 console.log("I put the ratings on the page");
             };
             window.onload = (event) => {
                 console.log("window has loaded");
-                getRatings();
+                getRatings("uk");
             };
         </script>
     </body>
